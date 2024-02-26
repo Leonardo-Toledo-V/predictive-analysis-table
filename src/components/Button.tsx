@@ -20,8 +20,10 @@ export default function Button(props: any) {
     return (
         <center>
             <div>
-                <button onClick={handleCopyClick}>
-                    Copiar código
+                <button 
+                className="bg-[#ff5e91] text-[#ececec] mb-4 p-2 rounded-md"
+                onClick={handleCopyClick}>
+                    {!isCopied ? "Copiar código" : "Copiado en el portapapeles"}
                 </button>
             </div>
             <pre>

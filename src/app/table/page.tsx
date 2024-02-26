@@ -35,7 +35,7 @@ export default function table() {
                 <Monaco
                     beforeMount={setEditorTheme}
                     width="800"
-                    height="20vh"
+                    height="15vh"
                     theme="predictiva"
                     value={codigo}
                     options={{
@@ -45,7 +45,6 @@ export default function table() {
                         quickSuggestions: false,
                     }}
                     onChange={(newValue) => {
-                        console.log("Valor:", newValue);
                         if (typeof newValue === "string") {
                             setCodigo(newValue);
                         }
@@ -54,23 +53,26 @@ export default function table() {
 
                 <div className="flex items-center justify-center text-[#ffffff]">
                     <div className="flex justify-center flex-col">
-                        <button 
-                        className="bg-[#ff5e91] text-black p-2 rounded-md hover:bg-[#ff76a2] duration-300"
-                        onClick={handleValidarClick}>Verificar</button>
-                        {esValido !== null && <p className={esValido ? "text-[#52bd3d] mt-2": "text-[#bd3d3d] mt-2"}>{esValido ? "Código válido" : "Hubo un error, verifique sus parámetros"}</p>}
+                        <button
+                            className="bg-[#ff5e91] text-[#ececec] p-2 rounded-md hover:bg-[#ff76a2] duration-300"
+                            onClick={handleValidarClick}>Verificar</button>
+                        {esValido !== null && <p className={esValido ? "text-[#52bd3d] mt-2" : "text-[#bd3d3d] mt-2"}>{esValido ? "Código válido" : "Hubo un error, verifique sus parámetros"}</p>}
                     </div>
                 </div>
                 <center>
-                <div className="ml-2 text-white overflow-auto h-64">
-                    <ul style={{ listStyleType: "none", padding: 0 }}>
-                        {resul.map((info: string, index: number) => (
-                            <li key={index} style={{ marginTop: "1cm" }}>
-                                {info}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </center>
+                    <div className="ml-2 text-white overflow-x-scroll h-64">
+                        <ul className="grid grid-cols-6 gap-4 mx-12">
+                            {resul.map((info: string, index: number) => (
+                                <li key={index} className="mt-12 col-span-3 bg-[#2c2c2c] p-8 ">
+                                    <div className="flex justify-start">
+                                        <p className="bg-green-500 py-[0.0.9rem] px-2 rounded-full">{index + 1}</p>
+                                    </div>
+                                    {info}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </center>
             </div>
         </>
     );
@@ -124,14 +126,12 @@ function validacion(codigo: string) {
     return { esValida: contador === codigo.length, infoPila };
 }
 
-// automata estado: 3 - 123 ; inicio: 1; aceptacion : 2123;
 function esNoTerminal(simbolo: string) {
     const terminales: string[] = ["automata", "estado", ";", "[", ",", "]"];
     return !terminales.includes(simbolo);
 }
 
 function obtenerProduccion(noTerminal: string, siguiente: string) {
-    console.log("Siguiente:", siguiente);
 
     const producciones: { [key: string]: string[] | RegExp | null } = {
         S: ["A", "B", ":", "D", "-", "C", ";", "Q", ":", "D", ";", "P", ":", "C", ";"],

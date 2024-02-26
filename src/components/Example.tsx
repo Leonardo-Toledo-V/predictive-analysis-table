@@ -7,7 +7,9 @@ function Example() {
             content: [
                 {
                     subtitle: "Leonardo Toledo Velazco",
-                    code: `automata estado: 3 - 123 ; inicio: 1; aceptacion : 2123;`,
+                    code: `automata estado: 3 - 123 ; 
+inicio: 1; 
+aceptacion : 3;`,
                 },
             ],
         },
