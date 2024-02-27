@@ -98,7 +98,7 @@ function validacion(codigo: string) {
         const a: string | undefined = codigo[contador];
 
         if (X === "$") {
-            infoPila.push("Fin");
+            infoPila.push("Fin del algoritmo");
             break;
         }
 
@@ -134,13 +134,14 @@ function esNoTerminal(simbolo: string) {
 function obtenerProduccion(noTerminal: string, siguiente: string) {
 
     const producciones: { [key: string]: string[] | RegExp | null } = {
-        S: ["A", "B", ":", "D", "-", "C", ";", "Q", ":", "D", ";", "P", ":", "C", ";"],
+        S: ["A", "B", ":", "D", "-", "C", ";", "Q", ":", "D", ";", "P", ":", "C", ";", "V"],
         A: ["a", "u", "t", "o", "m", "a", "t", "a"],
         B: ["e", "s", "t", "a", "d", "o"],
         D: /[0-9]/.test(siguiente) ? [siguiente] : null,
         C: /[0-9]/.test(siguiente) ? ["D", "C"] : ["ε"],
         Q: ["i", "n", "i", "c", "i", "o"],
         P: ["a", "c", "e", "p", "t", "a", "c", "i", "o", "n"],
+        V: ["f", "i", "n"]
     };
 
     return producciones[noTerminal];

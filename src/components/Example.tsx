@@ -3,13 +3,14 @@ import Card from "./Card";
 function Example() {
     const ExamplesCodes = [
         {
-            title: "213375",
+            title: "213375  -  Gramática 2",
             content: [
                 {
                     subtitle: "Leonardo Toledo Velazco",
-                    code: `automata estado: 3 - 123 ; 
-inicio: 1; 
-aceptacion : 3;`,
+                    code: `automata estado: 2 - 396 ; 
+inicio: 2; 
+aceptacion : 962;
+fin`,
                 },
             ],
         },
