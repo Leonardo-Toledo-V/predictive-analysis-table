@@ -29,9 +29,17 @@ export default function table() {
     }
 
     return (
-        <>
+        <div className="bg-[#1e1e1e]">
             <Example />
-            <div className="bg-[#1e1e1e] h-[520px]">
+            <div className="flex items-center justify-center text-[#ffffff] mb-4">
+                    <div className="flex justify-center flex-col">
+                        <button
+                            className="bg-[#ff5e91] text-[#ececec] p-2 rounded-md hover:bg-[#ff76a2] duration-300"
+                            onClick={handleValidarClick}>Verificar</button>
+                        {esValido !== null && <p className={esValido ? "text-[#52bd3d] mt-2" : "text-[#bd3d3d] mt-2"}>{esValido ? "Código válido" : "Hubo un error, verifique sus parámetros"}</p>}
+                    </div>
+                </div>
+            <div className=" h-[520px]">
                 <Monaco
                     beforeMount={setEditorTheme}
                     width="800"
@@ -50,15 +58,6 @@ export default function table() {
                         }
                     }}
                 />
-
-                <div className="flex items-center justify-center text-[#ffffff]">
-                    <div className="flex justify-center flex-col">
-                        <button
-                            className="bg-[#ff5e91] text-[#ececec] p-2 rounded-md hover:bg-[#ff76a2] duration-300"
-                            onClick={handleValidarClick}>Verificar</button>
-                        {esValido !== null && <p className={esValido ? "text-[#52bd3d] mt-2" : "text-[#bd3d3d] mt-2"}>{esValido ? "Código válido" : "Hubo un error, verifique sus parámetros"}</p>}
-                    </div>
-                </div>
                 <center>
                     <div className="ml-2 text-white overflow-x-scroll h-64">
                         <ul className="grid grid-cols-6 gap-4 mx-12">
@@ -74,7 +73,7 @@ export default function table() {
                     </div>
                 </center>
             </div>
-        </>
+        </div>
     );
 }
 
@@ -133,7 +132,7 @@ function esNoTerminal(simbolo: string) {
 
 function obtenerProduccion(noTerminal: string, siguiente: string) {
 
-    const producciones: { [key: string]: string[] | RegExp | null } = {
+    const grammar: { [key: string]: string[] | RegExp | null } = {
         S: ["A", "B", ":", "D", "-", "C", ";", "Q", ":", "D", ";", "P", ":", "C", ";", "V"],
         A: ["a", "u", "t", "o", "m", "a", "t", "a"],
         B: ["e", "s", "t", "a", "d", "o"],
@@ -144,7 +143,7 @@ function obtenerProduccion(noTerminal: string, siguiente: string) {
         V: ["f", "i", "n"]
     };
 
-    return producciones[noTerminal];
+    return grammar[noTerminal];
 }
 
 

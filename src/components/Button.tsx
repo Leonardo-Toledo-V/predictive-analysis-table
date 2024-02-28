@@ -11,7 +11,7 @@ export default function Button(props: any) {
     return (
         <center>
             <pre>
-                <code>{code}</code>
+                <p className="text-white font-extralight">{code}</p>
             </pre>
         </center>
     );
